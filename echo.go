@@ -16,6 +16,7 @@ func main() {
 	e.GET("/show", show)
 	e.POST("/save", save)
 	e.GET("/json", json)
+	e.GET("/xml", xml)
 
 	e.Logger.Fatal(e.Start(":1323"))
 }
@@ -41,8 +42,9 @@ func save(c echo.Context) error {
 	return c.String(http.StatusOK, "name:"+name+", email:"+email)
 }
 
-type User struct {
-
+type Profile struct {
+	Team   string `json:"team" xml:"team"`
+	Member string `json:"member" xml:"member"`
 }
 
 func json(c echo.Context) error {
@@ -50,10 +52,23 @@ func json(c echo.Context) error {
 	team := c.QueryParam("team")
 	member := c.QueryParam("member")
 
-	result := map[string]string{
-		"team":   team,
-		"member": member,
+	result := Profile{
+		team,
+		member,
 	}
 
 	return c.JSON(http.StatusOK, result)
+}
+
+func xml(c echo.Context) error {
+	// Get team and member from the query string
+	team := c.QueryParam("team")
+	member := c.QueryParam("member")
+
+	result := Profile{
+		team,
+		member,
+	}
+
+	return c.XML(http.StatusOK, result)
 }
