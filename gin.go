@@ -15,10 +15,10 @@ func main() {
 }
 
 func home(c *gin.Context) {
-	team := c.Query("team")
-	member := c.Query("member")
+	team := c.DefaultQuery("team", "caiknife")
+	member := c.DefaultQuery("member", "caiknife")
 
-	result := model.Profile{
+	result := &model.Profile{
 		Team:   team,
 		Member: member,
 	}

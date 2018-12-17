@@ -48,7 +48,7 @@ func json(c echo.Context) error {
 	team := c.QueryParam("team")
 	member := c.QueryParam("member")
 
-	result := model.Profile{
+	result := &model.Profile{
 		Team:   team,
 		Member: member,
 	}
@@ -61,9 +61,9 @@ func xml(c echo.Context) error {
 	team := c.QueryParam("team")
 	member := c.QueryParam("member")
 
-	result := &Profile{
-		team,
-		member,
+	result := &model.Profile{
+		Team:   team,
+		Member: member,
 	}
 
 	return c.XML(http.StatusOK, result)
