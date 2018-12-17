@@ -13,6 +13,19 @@ func main() {
 	g.Run(":8888")
 }
 
-func home(g *gin.Context) {
-	g.String(http.StatusOK, "Hello, world!")
+type Person struct {
+	Team   string `json:"team" xml:"team"`
+	Member string `json:"member" xml:"member"`
+}
+
+func home(c *gin.Context) {
+	team := c.Query("team")
+	member := c.Query("member")
+
+	result := &Person{
+		team,
+		member,
+	}
+
+	c.JSON(http.StatusOK, result)
 }

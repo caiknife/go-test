@@ -65,7 +65,7 @@ func xml(c echo.Context) error {
 	team := c.QueryParam("team")
 	member := c.QueryParam("member")
 
-	result := Profile{
+	result := &Profile{
 		team,
 		member,
 	}
