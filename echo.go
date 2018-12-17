@@ -3,6 +3,7 @@ package main
 import (
 	"github.com/labstack/echo"
 	"net/http"
+	"go-test/model"
 )
 
 func main() {
@@ -42,19 +43,14 @@ func save(c echo.Context) error {
 	return c.String(http.StatusOK, "name:"+name+", email:"+email)
 }
 
-type Profile struct {
-	Team   string `json:"team" xml:"team"`
-	Member string `json:"member" xml:"member"`
-}
-
 func json(c echo.Context) error {
 	// Get team and member from the query string
 	team := c.QueryParam("team")
 	member := c.QueryParam("member")
 
-	result := Profile{
-		team,
-		member,
+	result := model.Profile{
+		Team:   team,
+		Member: member,
 	}
 
 	return c.JSON(http.StatusOK, result)
