@@ -2,13 +2,11 @@ package data
 
 import "fmt"
 
-// 链表节点
 type ListNode struct {
 	next  *ListNode
 	value interface{}
 }
 
-// 链表开始
 type LinkedList struct {
 	head   *ListNode
 	length uint
@@ -18,94 +16,75 @@ func NewListNode(v interface{}) *ListNode {
 	return &ListNode{nil, v}
 }
 
+func (this *ListNode) GetNext() *ListNode {
+	return this.next
+}
+
+func (this *ListNode) GetValue() interface{} {
+	return this.value
+}
+
 func NewLinkedList() *LinkedList {
 	return &LinkedList{NewListNode(0), 0}
 }
 
-func (l *ListNode) GetNext() *ListNode {
-	return l.next
-}
-
-func (l *ListNode) GetValue() interface{} {
-	return l.value
-}
-
-// 在某个节点之后插入新节点
-func (l *LinkedList) InsertAfter(p *ListNode, v interface{}) bool {
-	if p == nil {
+//在某个节点后面插入节点
+func (this *LinkedList) InsertAfter(p *ListNode, v interface{}) bool {
+	if nil == p {
 		return false
 	}
-
-	cur := l.head.next
-
-	for cur != nil {
-		if cur == p {
-			break
-		}
-		cur = cur.next
-	}
-
-	if cur == nil {
-		return false
-	}
-
 	newNode := NewListNode(v)
-	oldNext := cur.next
-	cur.next = newNode
+	oldNext := p.next
+	p.next = newNode
 	newNode.next = oldNext
-	l.length++
+	this.length++
 	return true
 }
 
-// 在某个节点之前插入新节点
-func (l *LinkedList) InsertBefore(p *ListNode, v interface{}) bool {
-	if p == nil || p == l.head {
+//在某个节点前面插入节点
+func (this *LinkedList) InsertBefore(p *ListNode, v interface{}) bool {
+	if nil == p || p == this.head {
 		return false
 	}
-
-	cur := l.head.next
-	pre := l.head
-
-	for cur != nil {
+	cur := this.head.next
+	pre := this.head
+	for nil != cur {
 		if cur == p {
 			break
 		}
 		pre = cur
 		cur = cur.next
 	}
-
-	if cur == nil {
+	if nil == cur {
 		return false
 	}
-
 	newNode := NewListNode(v)
 	pre.next = newNode
 	newNode.next = cur
-	l.length++
+	this.length++
 	return true
 }
 
-// 在链表头部插入新节点
-func (l *LinkedList) InsertAtHead(v interface{}) bool {
-	return l.InsertAfter(l.head, v)
+//在链表头部插入节点
+func (this *LinkedList) InsertToHead(v interface{}) bool {
+	return this.InsertAfter(this.head, v)
 }
 
-// 在链表尾部插入新节点
-func (l *LinkedList) InsertAtTail(v interface{}) bool {
-	cur := l.head
-	for cur.next != nil {
+//在链表尾部插入节点
+func (this *LinkedList) InsertToTail(v interface{}) bool {
+	cur := this.head
+	for nil != cur.next {
 		cur = cur.next
 	}
-	return l.InsertAfter(cur, v)
+	return this.InsertAfter(cur, v)
 }
 
-// 通过索引查找节点
-func (l *LinkedList) FindByIndex(index uint) *ListNode {
-	if index >= l.length {
+//通过索引查找节点
+func (this *LinkedList) FindByIndex(index uint) *ListNode {
+	if index >= this.length {
 		return nil
 	}
-
-	cur := l.head.next
+	cur := this.head.next
 	var i uint = 0
 	for ; i < index; i++ {
 		cur = cur.next
@@ -113,41 +92,37 @@ func (l *LinkedList) FindByIndex(index uint) *ListNode {
 	return cur
 }
 
-// 删除节点
-func (l *LinkedList) DeleteNode(p *ListNode) bool {
-	if p == nil {
+//删除传入的节点
+func (this *LinkedList) DeleteNode(p *ListNode) bool {
+	if nil == p {
 		return false
 	}
-
-	cur := l.head.next
-	pre := l.head
-
-	for cur != nil {
+	cur := this.head.next
+	pre := this.head
+	for nil != cur {
 		if cur == p {
 			break
 		}
 		pre = cur
 		cur = cur.next
 	}
-
-	if cur == nil {
+	if nil == cur {
 		return false
 	}
-
 	pre.next = p.next
 	p = nil
-	l.length--
+	this.length--
 	return true
 }
 
-// 打印链表
-func (l *LinkedList) Print() {
-	cur := l.head.next
+//打印链表
+func (this *LinkedList) Print() {
+	cur := this.head.next
 	format := ""
-	for cur != nil {
+	for nil != cur {
 		format += fmt.Sprintf("%+v", cur.GetValue())
 		cur = cur.next
-		if cur != nil {
+		if nil != cur {
 			format += "->"
 		}
 	}
