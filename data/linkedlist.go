@@ -16,12 +16,12 @@ func NewListNode(v interface{}) *ListNode {
 	return &ListNode{nil, v}
 }
 
-func (this *ListNode) GetNext() *ListNode {
-	return this.next
+func (list *ListNode) GetNext() *ListNode {
+	return list.next
 }
 
-func (this *ListNode) GetValue() interface{} {
-	return this.value
+func (list *ListNode) GetValue() interface{} {
+	return list.value
 }
 
 func NewLinkedList() *LinkedList {
@@ -29,7 +29,7 @@ func NewLinkedList() *LinkedList {
 }
 
 //在某个节点后面插入节点
-func (this *LinkedList) InsertAfter(p *ListNode, v interface{}) bool {
+func (list *LinkedList) InsertAfter(p *ListNode, v interface{}) bool {
 	if nil == p {
 		return false
 	}
@@ -37,17 +37,17 @@ func (this *LinkedList) InsertAfter(p *ListNode, v interface{}) bool {
 	oldNext := p.next
 	p.next = newNode
 	newNode.next = oldNext
-	this.length++
+	list.length++
 	return true
 }
 
 //在某个节点前面插入节点
-func (this *LinkedList) InsertBefore(p *ListNode, v interface{}) bool {
-	if nil == p || p == this.head {
+func (list *LinkedList) InsertBefore(p *ListNode, v interface{}) bool {
+	if nil == p || p == list.head {
 		return false
 	}
-	cur := this.head.next
-	pre := this.head
+	cur := list.head.next
+	pre := list.head
 	for nil != cur {
 		if cur == p {
 			break
@@ -61,30 +61,30 @@ func (this *LinkedList) InsertBefore(p *ListNode, v interface{}) bool {
 	newNode := NewListNode(v)
 	pre.next = newNode
 	newNode.next = cur
-	this.length++
+	list.length++
 	return true
 }
 
 //在链表头部插入节点
-func (this *LinkedList) InsertToHead(v interface{}) bool {
-	return this.InsertAfter(this.head, v)
+func (list *LinkedList) InsertToHead(v interface{}) bool {
+	return list.InsertAfter(list.head, v)
 }
 
 //在链表尾部插入节点
-func (this *LinkedList) InsertToTail(v interface{}) bool {
-	cur := this.head
+func (list *LinkedList) InsertToTail(v interface{}) bool {
+	cur := list.head
 	for nil != cur.next {
 		cur = cur.next
 	}
-	return this.InsertAfter(cur, v)
+	return list.InsertAfter(cur, v)
 }
 
 //通过索引查找节点
-func (this *LinkedList) FindByIndex(index uint) *ListNode {
-	if index >= this.length {
+func (list *LinkedList) FindByIndex(index uint) *ListNode {
+	if index >= list.length {
 		return nil
 	}
-	cur := this.head.next
+	cur := list.head.next
 	var i uint = 0
 	for ; i < index; i++ {
 		cur = cur.next
@@ -93,12 +93,12 @@ func (this *LinkedList) FindByIndex(index uint) *ListNode {
 }
 
 //删除传入的节点
-func (this *LinkedList) DeleteNode(p *ListNode) bool {
+func (list *LinkedList) DeleteNode(p *ListNode) bool {
 	if nil == p {
 		return false
 	}
-	cur := this.head.next
-	pre := this.head
+	cur := list.head.next
+	pre := list.head
 	for nil != cur {
 		if cur == p {
 			break
@@ -111,13 +111,13 @@ func (this *LinkedList) DeleteNode(p *ListNode) bool {
 	}
 	pre.next = p.next
 	p = nil
-	this.length--
+	list.length--
 	return true
 }
 
 //打印链表
-func (this *LinkedList) Print() {
-	cur := this.head.next
+func (list *LinkedList) Print() {
+	cur := list.head.next
 	format := ""
 	for nil != cur {
 		format += fmt.Sprintf("%+v", cur.GetValue())
