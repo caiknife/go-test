@@ -12,8 +12,22 @@ func NewCircularQueue(capacity int) *CircularQueue {
 	}
 }
 
-func (q *CircularQueue) EnQueue(item interface{}) bool {
+func (q *CircularQueue) IsEmpty() bool {
+	if q.head == q.tail {
+		return true
+	}
+	return false
+}
+
+func (q *CircularQueue) IsFull() bool {
 	if (q.tail+1)%q.n == q.head {
+		return true
+	}
+	return false
+}
+
+func (q *CircularQueue) EnQueue(item interface{}) bool {
+	if q.IsFull() {
 		return false
 	}
 
@@ -23,7 +37,7 @@ func (q *CircularQueue) EnQueue(item interface{}) bool {
 }
 
 func (q *CircularQueue) DeQueue() (interface{}, bool) {
-	if q.head == q.tail {
+	if q.IsEmpty() {
 		return nil, false
 	}
 
