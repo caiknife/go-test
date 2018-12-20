@@ -2,16 +2,6 @@ package stack
 
 import "fmt"
 
-type Stack interface {
-	Push(v interface{})
-	Pop()
-	IsEmpty() bool
-	Top() interface{}
-	Flush()
-	String() string
-	Print()
-}
-
 type ArrayStack struct {
 	data []interface{}
 	top  int
@@ -70,7 +60,7 @@ func (s *ArrayStack) String() string {
 	for i := s.top; i > -1; i-- {
 		result += fmt.Sprintf("->%+v", s.data[i])
 	}
-	result += "bottom"
+	result += "->bottom"
 	return result
 }
 
