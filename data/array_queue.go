@@ -1,5 +1,7 @@
 package data
 
+import "fmt"
+
 type ArrayQueue struct {
 	items         []interface{}
 	n, head, tail int
@@ -53,4 +55,16 @@ func (q *ArrayQueue) DeQueue() (interface{}, bool) {
 	v := q.items[q.head]
 	q.head++
 	return v, true
+}
+
+func (q *ArrayQueue) String() string {
+	if q.IsEmpty() {
+		return "empty queue"
+	}
+	result := "head"
+	for i := q.head; i <= q.tail-1; i++ {
+		result += fmt.Sprintf("<-%+v", q.items[i])
+	}
+	result += "<-tail"
+	return result
 }

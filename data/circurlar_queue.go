@@ -1,5 +1,7 @@
 package data
 
+import "fmt"
+
 type CircularQueue struct {
 	items         []interface{}
 	n, head, tail int
@@ -44,4 +46,22 @@ func (q *CircularQueue) DeQueue() (interface{}, bool) {
 	item := q.items[q.head]
 	q.head = (q.head + 1) % q.n
 	return item, true
+}
+
+func (q *CircularQueue) String() string {
+	if q.IsEmpty() {
+		return "empty queue"
+	}
+
+	result := "head"
+	i := q.head
+	for true {
+		result += fmt.Sprintf("<-%+v", q.items[i])
+		i = (i + 1) % q.n
+		if i == q.tail {
+			break
+		}
+	}
+	result += "<-tail"
+	return result
 }
