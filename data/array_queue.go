@@ -28,7 +28,17 @@ func (q *ArrayQueue) IsFull() bool {
 
 func (q *ArrayQueue) EnQueue(v interface{}) bool {
 	if q.IsFull() {
-		return false
+		if q.head == 0 {
+			// tail==n && head==0 表示队列满了
+			return false
+		}
+		// 数据搬移
+		for i := q.head; i < q.tail; i++ {
+			q.items[i-q.head] = q.items[i]
+		}
+
+		q.tail -= q.head
+		q.head = 0
 	}
 	q.items[q.tail] = v
 	q.tail++
