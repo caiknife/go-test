@@ -1,6 +1,11 @@
-package data
+package queue
 
 import "fmt"
+
+type ListNode struct {
+	next  *ListNode
+	value interface{}
+}
 
 type LinkedListQueue struct {
 	head   *ListNode
