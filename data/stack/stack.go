@@ -2,7 +2,7 @@ package stack
 
 type Stack interface {
 	Push(v interface{})
-	Pop()
+	Pop() interface{}
 	IsEmpty() bool
 	Top() interface{}
 	Flush()
