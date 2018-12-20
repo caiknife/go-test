@@ -3,6 +3,7 @@ package queue
 import "fmt"
 
 type CircularQueue struct {
+	Queue
 	items         []interface{}
 	n, head, tail int
 }

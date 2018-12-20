@@ -8,11 +8,12 @@ type Node struct {
 }
 
 type LinkedListStack struct {
+	Stack
 	top *Node
 }
 
 func NewLinkedListStack() *LinkedListStack {
-	return &LinkedListStack{nil}
+	return &LinkedListStack{top: nil}
 }
 
 func (s *LinkedListStack) IsEmpty() bool {

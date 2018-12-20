@@ -3,6 +3,7 @@ package stack
 import "fmt"
 
 type ArrayStack struct {
+	Stack
 	data []interface{}
 	top  int
 }

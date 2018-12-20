@@ -8,13 +8,14 @@ type ListNode struct {
 }
 
 type LinkedListQueue struct {
+	Queue
 	head   *ListNode
 	tail   *ListNode
 	length int
 }
 
 func NewLinkedListQueue() *LinkedListQueue {
-	return &LinkedListQueue{nil, nil, 0}
+	return &LinkedListQueue{head: nil, tail: nil, length: 0}
 }
 
 func (q *LinkedListQueue) EnQueue(v interface{}) bool {
