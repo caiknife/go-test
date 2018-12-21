@@ -6,6 +6,5 @@ type Profile struct {
 }
 
 type Person struct {
-	Team   string `json:"team" xml:"team"`
-	Member string `json:"member" xml:"member"`
+	Profile
 }
