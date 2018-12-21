@@ -10,7 +10,7 @@ func BinarySearch(a []int, v int) int {
 	high := n - 1
 
 	for low <= high {
-		mid := (low + high) / 2
+		mid := low + (high-low)>>1
 		if (a[mid] == v) {
 			return mid
 		} else if a[mid] > v {
@@ -37,7 +37,7 @@ func bs(a []int, v int, low int, high int) int {
 		return -1
 	}
 
-	mid := (low + high) / 2
+	mid := low + (high-low)>>1
 	if a[mid] == v {
 		return mid
 	} else if a[mid] > v {
