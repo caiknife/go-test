@@ -22,13 +22,13 @@ type Array struct {
 	Object
 }
 
-func NewArray(n int) *Array {
-	if n == 0 {
+func NewArray(capacity int) *Array {
+	if capacity == 0 {
 		return nil
 	}
 
 	return &Array{
-		data:   make([]interface{}, n, n),
+		data:   make([]interface{}, capacity, capacity),
 		length: 0,
 	}
 }
