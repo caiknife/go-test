@@ -2,7 +2,7 @@ package queue
 
 import "testing"
 
-func TestListQueue_EnQueue(t *testing.T) {
+func TestListQueueEnQueue(t *testing.T) {
 	q := NewLinkedListQueue()
 	q.EnQueue(1)
 	q.EnQueue(2)
@@ -13,7 +13,7 @@ func TestListQueue_EnQueue(t *testing.T) {
 	t.Log(q)
 }
 
-func TestListQueue_DeQueue(t *testing.T) {
+func TestListQueueDeQueue(t *testing.T) {
 	q := NewLinkedListQueue()
 	q.EnQueue(1)
 	q.EnQueue(2)

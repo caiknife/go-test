@@ -2,7 +2,7 @@ package queue
 
 import "testing"
 
-func TestArrayQueue_EnQueue(t *testing.T) {
+func TestArrayQueueEnQueue(t *testing.T) {
 	q := NewArrayQueue(5)
 	q.EnQueue(1)
 	q.EnQueue(2)
@@ -13,7 +13,7 @@ func TestArrayQueue_EnQueue(t *testing.T) {
 	t.Log(q)
 }
 
-func TestArrayQueue_DeQueue(t *testing.T) {
+func TestArrayQueueDeQueue(t *testing.T) {
 	q := NewArrayQueue(5)
 	q.EnQueue(1)
 	q.EnQueue(2)

@@ -2,7 +2,7 @@ package stack
 
 import "testing"
 
-func TestLinkedListStack_Push(t *testing.T) {
+func TestLinkedListStackPush(t *testing.T) {
 	s := NewLinkedListStack()
 	s.Push(1)
 	s.Push(2)
@@ -10,7 +10,7 @@ func TestLinkedListStack_Push(t *testing.T) {
 	s.Print()
 }
 
-func TestLinkedListStack_Pop(t *testing.T) {
+func TestLinkedListStackPop(t *testing.T) {
 	s := NewLinkedListStack()
 	s.Push(1)
 	s.Push(2)
@@ -24,7 +24,7 @@ func TestLinkedListStack_Pop(t *testing.T) {
 	s.Print()
 }
 
-func TestLinkedListStack_Top(t *testing.T) {
+func TestLinkedListStackTop(t *testing.T) {
 	s := NewLinkedListStack()
 	s.Push(1)
 	s.Push(2)

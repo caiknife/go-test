@@ -2,7 +2,7 @@ package queue
 
 import "testing"
 
-func TestCircularQueue_EnQueue(t *testing.T) {
+func TestCircularQueueEnQueue(t *testing.T) {
 	q := NewCircularQueue(5)
 	q.EnQueue(1)
 	q.EnQueue(2)
@@ -13,7 +13,7 @@ func TestCircularQueue_EnQueue(t *testing.T) {
 	t.Log(q)
 }
 
-func TestCircularQueue_DeQueue(t *testing.T) {
+func TestCircularQueueDeQueue(t *testing.T) {
 	q := NewCircularQueue(5)
 	q.EnQueue(1)
 	q.EnQueue(2)
