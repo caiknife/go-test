@@ -117,14 +117,54 @@ func (list *LinkedList) DeleteNode(p *ListNode) bool {
 
 //打印链表
 func (list *LinkedList) Print() {
+	fmt.Println(list.String())
+}
+
+func (list *LinkedList) String() string {
 	cur := list.head.next
 	format := ""
-	for nil != cur {
+	for cur != nil {
 		format += fmt.Sprintf("%+v", cur.GetValue())
 		cur = cur.next
-		if nil != cur {
+		if cur != nil {
 			format += "->"
 		}
 	}
-	fmt.Println(format)
+	return format
+}
+
+// 链表反转 复杂度O(n)
+func (list *LinkedList) Reverse() {
+	// 不需要反转
+	if list.head == nil || list.head.next == nil || list.head.next.next == nil {
+		return
+	}
+
+	var pre *ListNode = nil
+	cur := list.head.next
+	// 遍历链表
+	for cur != nil {
+		var tmp = cur.next
+		cur.next = pre
+		pre = cur
+		cur = tmp
+	}
+	list.head.next = pre
+}
+
+// 判断链表是否有环
+func (list *LinkedList) HasCycle() bool {
+	if list.head != nil {
+		slow := list.head
+		fast := list.head
+
+		for fast != nil && fast.next != nil {
+			slow = slow.next
+			fast = fast.next.next
+			if slow == fast {
+				return true
+			}
+		}
+	}
+	return false
 }
