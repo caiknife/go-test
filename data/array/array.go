@@ -5,7 +5,7 @@ import (
 	"fmt"
 )
 
-type Object interface {
+type ArrayObject interface {
 	Len() int
 	IsIndexOutOfRange(index int) bool
 	Find(index int) (interface{}, error)
@@ -19,7 +19,7 @@ type Object interface {
 type Array struct {
 	data   []interface{}
 	length int
-	Object
+	ArrayObject
 }
 
 func NewArray(capacity int) *Array {
