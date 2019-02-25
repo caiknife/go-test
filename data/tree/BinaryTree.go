@@ -1,7 +1,6 @@
 package tree
 
 import (
-	"go-test/data/stack"
 	"fmt"
 )
 
@@ -15,17 +14,17 @@ func NewBinaryTree(v interface{}) *BinaryTree {
 
 func (this *BinaryTree) PreOrder() {
 	p := this.root
-	s := stack.NewArrayStack()
+	PreOrderTraverse(p)
 }
 
 func (this *BinaryTree) InOrder() {
 	p := this.root
-	s := stack.NewArrayStack()
+	InOrderTraverse(p)
 }
 
 func (this *BinaryTree) PostOrder() {
-	s1 := stack.NewArrayStack()
-	s2 := stack.NewArrayStack()
+	p := this.root
+	PostOrderTraverse(p)
 }
 
 func PreOrderTraverse(node *TreeNode) {
