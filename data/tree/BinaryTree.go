@@ -15,16 +15,19 @@ func NewBinaryTree(v interface{}) *BinaryTree {
 func (this *BinaryTree) PreOrder() {
 	p := this.root
 	PreOrderTraverse(p)
+	fmt.Println("")
 }
 
 func (this *BinaryTree) InOrder() {
 	p := this.root
 	InOrderTraverse(p)
+	fmt.Println("")
 }
 
 func (this *BinaryTree) PostOrder() {
 	p := this.root
 	PostOrderTraverse(p)
+	fmt.Println("")
 }
 
 func PreOrderTraverse(node *TreeNode) {
@@ -32,7 +35,7 @@ func PreOrderTraverse(node *TreeNode) {
 	if p == nil {
 		return
 	}
-	fmt.Sprintf("%+v ", p.data)
+	fmt.Printf("%+v ", p.data)
 	PreOrderTraverse(p.left)
 	PreOrderTraverse(p.right)
 }
@@ -43,7 +46,7 @@ func InOrderTraverse(node *TreeNode) {
 		return
 	}
 	InOrderTraverse(p.left)
-	fmt.Sprintf("%+v ", p.data)
+	fmt.Printf("%+v ", p.data)
 	InOrderTraverse(p.right)
 }
 
@@ -54,5 +57,5 @@ func PostOrderTraverse(node *TreeNode) {
 	}
 	PostOrderTraverse(p.left)
 	PostOrderTraverse(p.right)
-	fmt.Sprintf("%+v ", p.data)
+	fmt.Printf("%+v ", p.data)
 }
