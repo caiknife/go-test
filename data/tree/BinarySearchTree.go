@@ -16,12 +16,14 @@ func (this *BinarySearchTree) Find(v interface{}) *TreeNode {
 	p := this.root
 	for p != nil {
 		compareResult := this.compareFunc(v, p.data)
-		if compareResult == 0 {
-			return p
-		} else if compareResult < 0 { // v < p.data
-			p = p.left
-		} else { // v > p.data
+		if compareResult > 0 {
+			//v > nodeV
 			p = p.right
+		} else if compareResult < 0 {
+			//v < nodeV
+			p = p.left
+		} else {
+			return p
 		}
 	}
 	return nil
@@ -31,8 +33,12 @@ func (this *BinarySearchTree) Insert(v interface{}) bool {
 	p := this.root
 	for p != nil {
 		compareResult := this.compareFunc(v, p.data)
-		if compareResult == 0 {
-			return false
+		if compareResult > 0 {
+			if p.right == nil {
+				p.right = NewNode(v)
+				break
+			}
+			p = p.right
 		} else if compareResult < 0 {
 			if p.left == nil {
 				p.left = NewNode(v)
@@ -40,18 +46,13 @@ func (this *BinarySearchTree) Insert(v interface{}) bool {
 			}
 			p = p.left
 		} else {
-			if p.right == nil {
-				p.right = NewNode(v)
-				break
-			}
+			return false
 		}
 	}
-
 	return true
 }
 
 func (this *BinarySearchTree) Delete(v interface{}) bool {
-	// TODO
 	var pp *TreeNode = nil
 	p := this.root
 	deleteLeft := false
